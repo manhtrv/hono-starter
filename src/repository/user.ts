@@ -1,6 +1,6 @@
 import { eq } from 'drizzle-orm';
+import { type NewUser, db } from '../db/database.js';
 import { userSchema } from '../db/schema/schema.js';
-import { db, type NewUser } from '../db/database.js';
 
 export class UserRepository {
   public async create(user: NewUser) {

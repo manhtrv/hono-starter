@@ -21,7 +21,7 @@ const serveUnauthorized = (c: Context) => {
   return c.json({ error: getReasonPhrase(StatusCodes.UNAUTHORIZED) }, <ContentfulStatusCode>StatusCodes.UNAUTHORIZED);
 };
 
-const serveInternalServerError = (c: Context, error: any) => {
+const serveInternalServerError = (c: Context, error: unknown) => {
   if (error instanceof HTTPException) {
     return c.json({ error: error.message }, <ContentfulStatusCode>error.status);
   }

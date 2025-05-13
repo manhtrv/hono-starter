@@ -1,10 +1,13 @@
 {
   "scripts": {
+    "prepare": "husky install",
     "dev": "tsx watch src/index.ts | pino-pretty",
+    "build": "tsc",
+    "typecheck": "tsc --noEmit",
+    "format": "biome format --write ./src",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
-    "db:drop": "drizzle-kit drop",
-    "build": "tsc"
+    "db:drop": "drizzle-kit drop"
   },
   "type": "module",
   "dependencies": {
@@ -23,8 +26,11 @@
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
+    "@commitlint/config-conventional": "^19.8.1",
     "@types/node": "^22.10.10",
+    "commitlint": "^19.8.1",
     "drizzle-kit": "^0.30.2",
+    "husky": "^8.0.3",
     "prettier": "3.4.2",
     "tsx": "^4.19.2",
     "typescript": "^5.7.3"

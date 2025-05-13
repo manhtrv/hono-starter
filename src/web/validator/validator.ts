@@ -1,5 +1,5 @@
 import type { Context } from 'hono';
-import type { ZodError, ZodObject } from 'zod';
+import type { ZodError, ZodObject, ZodRawShape } from 'zod';
 import { serveUnprocessableEntity } from '../controller/resp/error.js';
 
 const getErrorPhrase = (error: ZodError) => {
@@ -8,7 +8,7 @@ const getErrorPhrase = (error: ZodError) => {
   return `${path}: ${message}`;
 };
 
-const validateSchema = (c: Context, schema: ZodObject<any>, value: any) => {
+const validateSchema = <T extends ZodRawShape>(c: Context, schema: ZodObject<T>, value: unknown) => {
   const parsed = schema.safeParse(value);
   if (!parsed.success) {
     return serveUnprocessableEntity(c, getErrorPhrase(parsed.error));
